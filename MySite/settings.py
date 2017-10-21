@@ -24,6 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'at20^g2vo66x300&_x9r$j*i3c+(!or!kp$1lxz%4=5a80ob7g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
@@ -86,10 +87,10 @@ WSGI_APPLICATION = 'MySite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dfjim2pil5eajs',
-        'USER': 'piiryxultmfrpo',
-        'PASSWORD': '7354cb77ee8d328e0dc3c6da5897ee628d29bdec8ce43018f41b0b41645ca58a',
-        'HOST': 'ec2-54-221-207-138.compute-1.amazonaws.com',
+        'NAME': 'd9ldjl9crlejp3',
+        'USER': 'phpxwuhzinsfrh',
+        'PASSWORD': '2b910a6ad7402b9091e5dde618f0c59ad80d66b48d78af4f1541bf46944061c3',
+        'HOST': 'ec2-184-73-189-190.compute-1.amazonaws.com',
         'PORT': '5432',
 
     }
@@ -143,12 +144,17 @@ STATICFILES_DIRS = (
 )
 
 # Update database configuration with $DATABASE_URL.
+
+DATABASES['default'] = dj_database_url.config()
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 
 
 
