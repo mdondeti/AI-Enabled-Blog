@@ -19,21 +19,20 @@ def post_list(request):
         username='e68faa60-6e71-42e0-a5bc-a98e170c2826',
         password='DG6R6N3PNAnK')
 
-
     for post in posts:
         data = json.dumps(tone_analyzer.tone(text=post.text), indent=1)
-        j = json.loads(data);
+        j = json.loads(data)
         post.info = j['document_tone']['tone_categories'][0]['tones']
         post.angerScore = post.info[0]['score']
         post.disgustScore = post.info[1]['score']
         post.fearScore = post.info[2]['score']
         post.joyScore = post.info[3]['score']
         post.sadScore = post.info[4]['score']
-    translation = language_translator.translate(
+        translation = language_translator.translate(
         text=post.text,
         source='en',
         target='es')
-    post.translatedText = json.dumps(translation, indent=2, ensure_ascii=False)
+        post.translatedText = json.dumps(translation, indent=2, ensure_ascii=False)
     return render(request, 'blog1/post_list.html', {'posts': posts})
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
